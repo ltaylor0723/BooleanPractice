@@ -10,18 +10,30 @@ public class GradeCalc {
         dailyPercent = dp;
     }
 
-    public String GradeWithWeight(int tw, int pw, int dw) {
-        double testWeight = tw / 10.0;
-        double projectWeight = pw / 10.0;
-        double dailyWeight = dw / 10.0;
+    public String GradeReport(int tw, int pw, int dw) {
+        double testWeight = tw / 100.0;
+        double projectWeight = pw / 100.0;
+        double dailyWeight = dw / 100.0;
         double grade = Math.round((testPercent*testWeight + projectPercent*projectWeight + dailyPercent*dailyWeight)*100.0) /100.0;
         String letterGrade;
-        if (grade > 95) {
-            letterGrade = "A+";
+        if (grade >= 95) {
+            letterGrade = " (A+)";
         }
-        else if (grade > 90) {
-            letterGrade = "A";
+        else if (grade >= 90) {
+            letterGrade = " (A)";
         }
-        else if
+        else if (grade >= 80) {
+            letterGrade = " (B)";
+        }
+        else if (grade >= 70) {
+            letterGrade = " (C)";
+        }
+        else if (grade >= 60) {
+            letterGrade = " (D)";
+        }
+        else {
+            letterGrade = " (F)";
+        }
+        return "Tests: " +testPercent+ "% || Weight: " +testWeight + "\nProjects: " +projectPercent+ "% || Weight: " +projectWeight + "\nDaily Work: " +dailyPercent+ "% || Weight: " +dailyWeight + "\nOverall grade: " + grade + "%" + letterGrade +"\n";
     }
 }
