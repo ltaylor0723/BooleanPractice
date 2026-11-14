@@ -26,7 +26,7 @@ public class Main
 */
         //-----------------------------------------------------------------------------------------------
         //2. GRADE CALC
-
+/*
         GradeCalc Grade1 = new GradeCalc(85, 92, 78);
         GradeCalc Grade2 = new GradeCalc(90, 90, 90);
         GradeCalc Grade3 = new GradeCalc(70, 75, 78);
@@ -64,6 +64,45 @@ public class Main
             dweight = 30;
         }
         System.out.println("\nGrade Report for User\n" + Grade5.GradeReport(tweight, pweight, dweight));
+*/
+        //-----------------------------------------------------------------------------------------------
+        //3. MULTIPLE CALC
 
+        System.out.println("Multiple Calculator: Test Case #1\n" + Multiple.isEvenStr(4));
+        System.out.println("Multiple Calculator: Test Case #2\n" + Multiple.isEvenStr(5));
+        System.out.println("Multiple Calculator: Test Case #3\n" + Multiple.isMultipleStr(15, 3));
+        System.out.println("Multiple Calculator: Test Case #4\n" + Multiple.isMultipleStr(17, 3));
+        System.out.println("Multiple Calculator: Test Case #5\n" + Multiple.isFactorStr(4, 15));
+        System.out.println("Multiple Calculator: Test Case #6\n" + Multiple.isFactorStr(7, 14));
+
+        System.out.println("Check Even/Odd (1)\nCheck Multiple (2)\nCheck Factor (3)\nPlease select an option:");
+        int option = user.nextInt();
+        if (option == 1) {
+            System.out.println("Please input a number:");
+            int number = user.nextInt();
+            System.out.println(Multiple.isEvenStr(number));
+        }
+        else if (option == 2) {
+            System.out.println("Please input a number:");
+            int number = user.nextInt();
+            System.out.println("Please input a factor:");
+            int factor = user.nextInt();
+            System.out.println(Multiple.isMultipleStr(number, factor));
+        }
+        else if (option == 3) {
+            System.out.println("Please input a factor:");
+            int factor = user.nextInt();
+            System.out.println("Please input a number:");
+            int number = user.nextInt();
+            System.out.println(Multiple.isFactorStr(factor, number));
+        }
+        else {
+            System.out.println("Invalid Option");
+        }
+
+        //-----------------------------------------------------------------------------------------------
+        //4. LEAP YEAR CHECK
+
+        
     }
 }
