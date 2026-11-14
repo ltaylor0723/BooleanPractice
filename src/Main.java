@@ -103,6 +103,9 @@ public class Main
         //-----------------------------------------------------------------------------------------------
         //4. LEAP YEAR CHECK
 
-        
+        System.out.println("Leap Year Calculator: Test Case #1\n" + LeapYear.isLeapYearStr(2020));
+        System.out.println("Leap Year Calculator: Test Case #2\n" + LeapYear.isLeapYearStr(2021));
+        System.out.println("Leap Year Calculator: Test Case #3\n" + LeapYear.isLeapYearStr(1900));
+        System.out.println("Leap Year Calculator: Test Case #4\n" + LeapYear.isLeapYearStr(2000));
     }
 }
