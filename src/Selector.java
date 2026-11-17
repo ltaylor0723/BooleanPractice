@@ -5,6 +5,8 @@ public class Selector {
             GRADE,
             MULTIPLE,
             LEAP,
+            TRIANGLECALC,
+            QUADRATIC,
             SETTINGS,
             EXIT,
             INVALID
@@ -23,9 +25,15 @@ public class Selector {
             return calcSelection.LEAP;
         }
         else if (s == 5) {
-            return calcSelection.SETTINGS;
+            return calcSelection.TRIANGLECALC;
         }
         else if (s == 6) {
+            return calcSelection.QUADRATIC;
+        }
+        else if (s == 8) {
+            return calcSelection.SETTINGS;
+        }
+        else if (s == 9) {
             return calcSelection.EXIT;
         }
         else {
