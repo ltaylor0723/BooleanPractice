@@ -2,6 +2,10 @@ public class TriangleCalc {
     double sideA;
     double sideB;
     double sideC;
+    int angleA;
+    int angleB;
+    int angleC;
+
 
     public TriangleCalc(double a, double b, double c) {
         sideA = a;
@@ -27,11 +31,19 @@ public class TriangleCalc {
         }
     }
 
-    public String getAngles() {
-        double angleA = Math.round((Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))) / 100.0) * 100.0;
-        double angleB = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))) / 100.0) * 100.0;
-        double angleC = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))) / 100.0) * 100.0;
-        return "The angle across from side A is " + angleA + ".\nThe angle across from side B is " + angleB + ".\nThe angle across from side C is " + angleC + ".\n";
+    public String getAnglesSSS() {
+        double angA = Math.round((Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))) / 100.0) * 100.0;
+        double angB = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))) / 100.0) * 100.0;
+        double angC = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))) / 100.0) * 100.0;
+        return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\n";
+    }
+
+    public String getMissingAnglesSAS() {
+        if ()
+    }
+
+    public String getSidesAAA() {
+        double
     }
 
 }

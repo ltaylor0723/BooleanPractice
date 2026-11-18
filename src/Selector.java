@@ -30,10 +30,10 @@ public class Selector {
         else if (s == 6) {
             return calcSelection.QUADRATIC;
         }
-        else if (s == 8) {
+        else if (s == 7) {
             return calcSelection.SETTINGS;
         }
-        else if (s == 9) {
+        else if (s == 8) {
             return calcSelection.EXIT;
         }
         else {
