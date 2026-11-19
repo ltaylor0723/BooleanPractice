@@ -8,7 +8,7 @@ public class TriangleCalc {
 
 
     public TriangleCalc(double a, double b, double c) {
-        //Three known sides, or two known sides and an unknown side with a length >= 0
+        //Three known sides, or two known sides and an unknown side with a length <= 0
         //SSS
         sideA = a;
         sideB = b;
@@ -20,16 +20,7 @@ public class TriangleCalc {
         //SAS
         sideA = a;
         sideB = b;
-        angleA = c;
-    }
-
-    public TriangleCalc(double a, int b, int c) {
-        //A single side, and the angles on either end of that side
-        //ASA(A)
-        sideA = a;
-        angleA = b;
-        angleB = c;
-        angleC = 180 - angleA - angleB;
+        angleC = c;
     }
 
     public TriangleCalc(int a, int b, int c) {
@@ -40,63 +31,83 @@ public class TriangleCalc {
         angleC = c;
     }
 
+    public TriangleCalc(double a, double b, double c, int d, int e, int f) {
+        //Any and all known
+        sideA = a;
+        sideB = b;
+        sideC = c;
+        angleA = d;
+        angleB = e;
+        angleC = f;
+    }
+
     public String PythagoreanTheorem() {
         if (sideA <= 0 && !(sideB <= 0 || sideC <= 0)) {
-            double solveA = Math.round((Math.sqrt(Math.pow(sideB, 2) + Math.pow(sideC, 2))) / 100.0) * 100.0;
+            double solveA = Math.round((Math.sqrt(Math.pow(sideB, 2) + Math.pow(sideC, 2))) * 100.0) / 100.0;
+            sideA = solveA;
             return "Solved for side A, got: " + solveA + ".\n";
         }
         else if (sideB <= 0 && !(sideA <= 0 || sideC <= 0)) {
-            double solveB = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideC, 2))) / 100.0) * 100.0;
+            double solveB = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideC, 2))) * 100.0) / 100.0;
+            sideB = solveB;
             return "Solved for side B, got: " + solveB + ".\n";
         }
         else if (sideC <= 0 && !(sideA <= 0 || sideB <= 0)) {
-            double solveC = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2))) / 100.0) * 100.0;
+            double solveC = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2))) * 100.0) / 100.0;
+            sideC = solveC;
             return "Solved for side C, got: " + solveC + ".\n";
         }
         else {
-            return "It seems like you've entered some funky values, have too many unknown side lengths, or know all the side lengths already.\nPlease try again.\n";
+            return "Error: Not enough information, or invalid inputs.\nPlease try again.\n";
         }
     }
 
     public String getAnglesSSS() {
-        double angA;
-        double angB;
-        double angC;
+        int angA;
+        int angB;
+        int angC;
         if (sideA > 0 && sideB > 0) {
-            angA = Math.round((Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))) / 100.0) * 100.0;
-            angB = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))) / 100.0) * 100.0;
-            angC = 180.0 - angA - angB;
-            return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\n";
-        }
+            angA = Math.round((float)(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
+            angB = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))));
+            angC = 180 - angA - angB;
+            }
         else if (sideA > 0 && sideC > 0) {
-            angA = Math.round((Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))) / 100.0) * 100.0;
-            angC = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))) / 100.0) * 100.0;
-            angB = 180.0 - angA - angC;
-            return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\n";
-        }
+            angA = Math.round((float)(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
+            angC = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))));
+            angB = 180 - angA - angC;
+            }
         else if (sideB > 0 && sideC > 0) {
-            angB = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))) / 100.0) * 100.0;
-            angC = Math.round((Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))) / 100.0) * 100.0;
-            angA = 180.0 - angB - angC;
-            return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\n";
+            angB = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))));
+            angC = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))));
+            angA = 180 - angB - angC;
         }
         else {
-            return "Sorry, not enough information.";
+            return "Error: Not enough information, or invalid inputs.\nPlease try again.\n";
         }
+        angleA = angA;
+        angleB = angB;
+        angleC = angC;
+        return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\nFull report:\nSide A: "+sideA+"\nSideB: "+sideB+"\nSideC: "+sideC+"\nAngle A: "+angleA+"\nAngle B: "+angleB+"\nAngle C: "+angleC;
     }
 
     public String getMissingAnglesSAS() {
-        if () {
-
-        }
+        sideC = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.cos(angleC))) * 100.0) / 100.0;
+        angleA = Math.round((float)(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
+        angleB = 180 - angleC - angleB;
+        return "Side C is "+sideC+".\nThe angle across from side A is " + angleA + ".\nThe angle across from side B is " + angleB + ".\\nFull report:\\nSide A: \"+sideA+\"\\nSideB: \"+sideB+\"\\nSideC: \"+sideC+\"\\nAngle A: \"+angleA+\"\\nAngle B: \"+angleB+\"\\nAngle C: \"+angleC";
     }
 
-    public String getSidesAAA() {
+    public String getSidesProportionsAAA() {
         //Proportions of the sides to each other based on the angles
-        double sA = 1;
-        double sB = sA * Math.sin(angleB) / Math.sin(angleA);
-        double sC = sA * Math.sin(angleC) / Math.sin(angleA);
-        return "The proportions of the sides, a:b:c, is " + sA + ":" + sB + ":" + sC + "\n";
+        if (angleA <= 0 || angleB <= 0 || angleC <= 0){
+            double sA = 1;
+            double sB = sA * Math.sin(angleB) / Math.sin(angleA);
+            double sC = sA * Math.sin(angleC) / Math.sin(angleA);
+            return "The proportions of the sides, a:b:c, is " + sA + ":" + sB + ":" + sC + "\n";
+        }
+        else {
+            return "Error: Not enough information, or invalid inputs.\nPlease try again.\n";
+        }
     }
 
 }
