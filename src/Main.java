@@ -193,6 +193,64 @@ public class Main
                     }
                     break;
                 
+                case TRIANGLECALC:
+                    ClearScreen.clear();
+                    if (showTestCases) {
+                        TriangleCalc Tri1SS = new TriangleCalc(4.0, 3.0, -1.0);
+                        TriangleCalc Tri2SSS = new TriangleCalc(2.0, 3.0, 6.0);
+                        TriangleCalc Tri3SAS = new TriangleCalc(2.0, 2.0, 60);
+                        TriangleCalc Tri4AAA = new TriangleCalc(30, 60, 90);
+                        System.out.println("\nTriangle Calculator: Test Case #1\nSides length 4.0, 3.0, and unknown\nPythagorean Theorem:\n" + Tri1.PythagoreanTheorem());
+                        System.out.println("Triangle Calculator: Test Case #2\nSides length 2.0, 3.0, and 6.0\nGet Angles:\n" + Tri2.getAnglesSSS());
+                        System.out.println("Triangle Calculator: Test Case #3\nSides length 2.0, 2.0, and angle 60 degrees between\nGet Missing:\n" + Tri3.getMissingAnglesSAS());
+                        System.out.println("Triangle Calculator: Test Case #4\nAngles 30, 60, and 90 dgrees\nGet Side Proportions:\n" + Tri4AAA.getSidesProportionsAAA());
+                    }
+                    loop = true;
+                    while (loop) {
+                        System.out.println("\nPythagorean Theorem (1)\nGet Angles for a SSS (2)\nGet Missing for a SAS (3)\nGet Proportions Between Sides for an AAA (4)\n");
+                        int pick = user.nextInt();
+                        if (pick == 1) {
+                            System.out.println("Please input Side A (not Hypotenuse), using -1 for unknown side:");
+                            double a = user.nextDouble();
+                            System.out.println("Please input Side B (not Hypotenuse), using -1 for unknown side:");
+                            double b = user.nextDouble();
+                            System.out.println("Please input Side C (the Hypotenuse), using -1 for unknown side:");
+                            double c = user.nextDouble();
+                            TriangleCalc UserTriSSS = new TriangleCalc(a, b, c);
+                            System.out.println("Pythagorean Theorem:\n" + UserTriSSS.PythagoreanTheorem());
+                        }
+                        else if (pick == 2) {
+
+                        }
+                        else if (pick == 3) {
+
+                        }
+                        else if (pick == 4) {
+                            System.out.println("Please input ");
+                        }
+                        else {
+                            trollingCounter ++;
+                            System.out.println("Invalid Option");
+                        }
+                        if (!automaticReturn) {
+                            System.out.println("\nNew Input (N) or Return to Menu (R)?");
+                            String loopInput = user.next();
+                            if (loopInput.equalsIgnoreCase("N")) {
+                                loop = true;
+                            }
+                            else {
+                                loop = false;
+                            }
+                        }
+                        else {
+                            loop = false;
+                        }
+                    }
+                    break;
+
+                case QUADRATIC:
+                    ClearScreen.clear();
+
                 case SETTINGS:
                     ClearScreen.clear();
                     System.out.println("\nSETTINGS:\nShow Test Cases (Y/N)? Default: true, Currently: " + showTestCases);
