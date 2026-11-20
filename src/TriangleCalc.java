@@ -67,18 +67,18 @@ public class TriangleCalc {
         int angB;
         int angC;
         if (sideA > 0 && sideB > 0) {
-            angA = Math.round((float)(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
-            angB = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))));
+            angA = Math.round((float)(Math.toDegrees(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC)))));
+            angB = Math.round((float)(Math.toDegrees(Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC)))));
             angC = 180 - angA - angB;
             }
         else if (sideA > 0 && sideC > 0) {
-            angA = Math.round((float)(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
-            angC = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))));
+            angA = Math.round((float)(Math.toDegrees(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC)))));
+            angC = Math.round((float)(Math.toDegrees(Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB)))));
             angB = 180 - angA - angC;
             }
         else if (sideB > 0 && sideC > 0) {
-            angB = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC))));
-            angC = Math.round((float)(Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB))));
+            angB = Math.round((float)(Math.toDegrees(Math.acos((Math.pow(sideA, 2) + Math.pow(sideC, 2) - Math.pow(sideB, 2)) / (2 * sideA * sideC)))));
+            angC = Math.round((float)(Math.toDegrees(Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB)))));
             angA = 180 - angB - angC;
         }
         else {
@@ -87,22 +87,22 @@ public class TriangleCalc {
         angleA = angA;
         angleB = angB;
         angleC = angC;
-        return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\nFull report:\nSide A: "+sideA+"\nSideB: "+sideB+"\nSideC: "+sideC+"\nAngle A: "+angleA+"\nAngle B: "+angleB+"\nAngle C: "+angleC;
+        return "The angle across from side A is " + angA + ".\nThe angle across from side B is " + angB + ".\nThe angle across from side C is " + angC + ".\n";
     }
 
     public String getMissingAnglesSAS() {
-        sideC = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.cos(angleC))) * 100.0) / 100.0;
-        angleA = Math.round((float)(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
-        angleB = 180 - angleC - angleB;
-        return "Side C is "+sideC+".\nThe angle across from side A is " + angleA + ".\nThe angle across from side B is " + angleB + ".\\nFull report:\\nSide A: \"+sideA+\"\\nSideB: \"+sideB+\"\\nSideC: \"+sideC+\"\\nAngle A: \"+angleA+\"\\nAngle B: \"+angleB+\"\\nAngle C: \"+angleC";
+        sideC = Math.round((Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2) - (sideA*sideB*2*Math.cos(Math.toRadians(angleC))))) * 100.0) / 100.0;
+        angleA = Math.round((float) Math.toDegrees(Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC))));
+        angleB = 180 - angleC - angleA;
+        return "Side C is "+sideC+".\nThe angle across from side A is " + angleA + ".\nThe angle across from side B is " + angleB + ".\n";
     }
 
     public String getSidesProportionsAAA() {
         //Proportions of the sides to each other based on the angles
-        if (angleA <= 0 || angleB <= 0 || angleC <= 0){
+        if (!(angleA <= 0 || angleB <= 0 || angleC <= 0)){
             double sA = 1;
-            double sB = sA * Math.sin(angleB) / Math.sin(angleA);
-            double sC = sA * Math.sin(angleC) / Math.sin(angleA);
+            double sB = Math.round(sA * (Math.sin(Math.toRadians(angleB))) / (Math.sin(Math.toRadians(angleA)))*10000.0)/10000.0;
+            double sC = Math.round(sA * (Math.sin(Math.toRadians(angleC))) / (Math.sin(Math.toRadians(angleA)))*10000.0)/10000.0;
             return "The proportions of the sides, a:b:c, is " + sA + ":" + sB + ":" + sC + "\n";
         }
         else {

@@ -10,7 +10,7 @@ public class Main
         boolean automaticReturn = false;
 
         while (returnToMenu) {
-            System.out.println("_______\nMENU:\n(1) BMI Calculator\n(2) Grade Calculator\n(3) Factor/Multiple and Even/Odd\n(4) Leap Year Check\n(5) Settings\n(6) Exit\n\nSelect:");
+            System.out.println("_______\nMENU:\n(1) BMI Calculator\n(2) Grade Calculator\n(3) Factor/Multiple and Even/Odd\n(4) Leap Year Check\n(5) Triangle Calculator\n(6) Quadratic Formula\n(7) Settings\n(8) Exit\n\nSelect:");
             int selection = user.nextInt();
             Selector.calcSelection select = Selector.Select(selection);
             switch (select) {
@@ -146,7 +146,17 @@ public class Main
                         }
                         else {
                             trollingCounter ++;
-                            System.out.println("Invalid Option");
+                            if (trollingCounter < 5) {
+                                System.out.println("Invalid selection. Please try again.");
+                            }
+                            else if (trollingCounter == 5) {
+                                System.out.println("Invalid selection. Please try again. (This is your last warning, trolling will result in being blocked from the program.)");
+                            }
+                            else {
+                                System.out.println("You have been blocked for trolling (L noob). Please restart the program to try again.");
+                                returnToMenu = false;
+                            }
+                            break;
                         }
                         if (!automaticReturn) {
                             System.out.println("\nNew Input (N) or Return to Menu (R)?");
@@ -197,13 +207,13 @@ public class Main
                     ClearScreen.clear();
                     if (showTestCases) {
                         TriangleCalc Tri1SS = new TriangleCalc(4.0, 3.0, -1.0);
-                        TriangleCalc Tri2SSS = new TriangleCalc(2.0, 3.0, 6.0);
+                        TriangleCalc Tri2SSS = new TriangleCalc(2.0, 8.0, 7.0);
                         TriangleCalc Tri3SAS = new TriangleCalc(2.0, 2.0, 60);
                         TriangleCalc Tri4AAA = new TriangleCalc(30, 60, 90);
-                        System.out.println("\nTriangle Calculator: Test Case #1\nSides length 4.0, 3.0, and unknown\nPythagorean Theorem:\n" + Tri1.PythagoreanTheorem());
-                        System.out.println("Triangle Calculator: Test Case #2\nSides length 2.0, 3.0, and 6.0\nGet Angles:\n" + Tri2.getAnglesSSS());
-                        System.out.println("Triangle Calculator: Test Case #3\nSides length 2.0, 2.0, and angle 60 degrees between\nGet Missing:\n" + Tri3.getMissingAnglesSAS());
-                        System.out.println("Triangle Calculator: Test Case #4\nAngles 30, 60, and 90 dgrees\nGet Side Proportions:\n" + Tri4AAA.getSidesProportionsAAA());
+                        System.out.println("\nTriangle Calculator: Test Case #1\nSides length 4.0, 3.0, and unknown\nPythagorean Theorem:\n" + Tri1SS.PythagoreanTheorem());
+                        System.out.println("Triangle Calculator: Test Case #2\nSides length 2.0, 8.0, and 7.0\nGet Angles:\n" + Tri2SSS.getAnglesSSS());
+                        System.out.println("Triangle Calculator: Test Case #3\nSides length 2.0, 2.0, and angle 60 degrees between\nGet Missing:\n" + Tri3SAS.getMissingAnglesSAS());
+                        System.out.println("Triangle Calculator: Test Case #4\nAngles 30, 60, and 90 degrees\nGet Side Proportions:\n" + Tri4AAA.getSidesProportionsAAA());
                     }
                     loop = true;
                     while (loop) {
@@ -216,21 +226,52 @@ public class Main
                             double b = user.nextDouble();
                             System.out.println("Please input Side C (the Hypotenuse), using -1 for unknown side:");
                             double c = user.nextDouble();
-                            TriangleCalc UserTriSSS = new TriangleCalc(a, b, c);
-                            System.out.println("Pythagorean Theorem:\n" + UserTriSSS.PythagoreanTheorem());
+                            TriangleCalc UserTriSS = new TriangleCalc(a, b, c);
+                            System.out.println("Pythagorean Theorem:\n" + UserTriSS.PythagoreanTheorem());
                         }
                         else if (pick == 2) {
-
+                            System.out.println("Please input Side A:");
+                            double a = user.nextDouble();
+                            System.out.println("Please input Side B:");
+                            double b = user.nextDouble();
+                            System.out.println("Please input Side C:");
+                            double c = user.nextDouble();
+                            TriangleCalc UserTriSSS = new TriangleCalc(a, b, c);
+                            System.out.println("Get Angles:\n" + UserTriSSS.getAnglesSSS());
                         }
                         else if (pick == 3) {
-
+                            System.out.println("Please input Side A:");
+                            double a = user.nextDouble();
+                            System.out.println("Please input Side B:");
+                            double b = user.nextDouble();
+                            System.out.println("Please input the angle between them:");
+                            int c = user.nextInt();
+                            TriangleCalc UserTriSAS = new TriangleCalc(a, b, c);
+                            System.out.println("Get Missing:\n" + UserTriSAS.getMissingAnglesSAS());
                         }
                         else if (pick == 4) {
-                            System.out.println("Please input ");
+                            System.out.println("Please input Angle A:");
+                            int a = user.nextInt();
+                            System.out.println("Please input Angle B:");
+                            int b = user.nextInt();
+                            System.out.println("Please input Angle C:");
+                            int c = user.nextInt();
+                            TriangleCalc UserTriAAA = new TriangleCalc(a, b, c);
+                            System.out.println("Get Side Proportions:\n" + UserTriAAA.getSidesProportionsAAA());
                         }
                         else {
                             trollingCounter ++;
-                            System.out.println("Invalid Option");
+                            if (trollingCounter < 5) {
+                                System.out.println("Invalid selection. Please try again.");
+                            }
+                            else if (trollingCounter == 5) {
+                                System.out.println("Invalid selection. Please try again. (This is your last warning, trolling will result in being blocked from the program.)");
+                            }
+                            else {
+                                System.out.println("You have been blocked for trolling (L noob). Please restart the program to try again.");
+                                returnToMenu = false;
+                            }
+                            break;
                         }
                         if (!automaticReturn) {
                             System.out.println("\nNew Input (N) or Return to Menu (R)?");
@@ -250,6 +291,33 @@ public class Main
 
                 case QUADRATIC:
                     ClearScreen.clear();
+                    if (showTestCases) {
+                        System.out.println("\nQuadratic Formula: Test Case #1\nX^2 + 3x - 4 = 0\n" + Quadratic.Formula(1,3,-4, true));
+                        System.out.println("Quadratic Formula: Test Case #2\nX^2 + 4x + 5 = 0\n" + Quadratic.Formula(1,4,5,true));
+                        System.out.println("Quadratic Formula: Test Case #3\n3X^2 -5x - 7 = 0\n" + Quadratic.Formula(3,-5,-7,true));
+                        System.out.println("Quadratic Formula: Test Case #4\nX^2 - 2X - 0 = 0\n" + Quadratic.Formula(1,-2,0,true));
+                    }
+                    loop = true;
+                    while (loop) {
+                        System.out.println("\nShow Non-Real Results (Y/N)?");
+                        String input = user.next();
+                        boolean showImaginary = input.equalsIgnoreCase("Y");
+
+                        if (!automaticReturn) {
+                            System.out.println("\nNew Input (N) or Return to Menu (R)?");
+                            String loopInput = user.next();
+                            if (loopInput.equalsIgnoreCase("N")) {
+                                loop = true;
+                            }
+                            else {
+                                loop = false;
+                            }
+                        }
+                        else {
+                            loop = false;
+                        }
+                    }
+                    break;
 
                 case SETTINGS:
                     ClearScreen.clear();
